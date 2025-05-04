@@ -1,6 +1,13 @@
 {
+  "name": "depelapi-backend-api",
+  "main": "index.js",
   "type": "module",
-  "dependencies": {
+  "scripts": {
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
+  },
+  "author": "azhimn",
+  "dependencies": { 
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
