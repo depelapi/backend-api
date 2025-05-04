@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import User from './user';
-import TitikKamera from './titik_kamera';
-import StatusKebakaran from './status_kebakaran';
+import TitikKamera from './titik-kamera';
+import StatusKebakaran from './status-kebakaran';
 
 @Table({
   tableName: 'pelaporan',

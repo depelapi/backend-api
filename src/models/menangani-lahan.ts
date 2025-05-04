@@ -1,6 +1,6 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import ReguDamkar from './regu_damkar';
-import TitikKamera from './titik_kamera';
+import ReguDamkar from './regu-damkar';
+import TitikKamera from './titik-kamera';
 
 @Table({
   tableName: 'menangani_lahan',

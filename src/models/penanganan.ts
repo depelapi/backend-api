@@ -1,5 +1,5 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import ReguDamkar from './regu_damkar';
+import ReguDamkar from './regu-damkar';
 import Pelaporan from './pelaporan';
 
 @Table({
