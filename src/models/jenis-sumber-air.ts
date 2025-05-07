@@ -4,7 +4,7 @@ import { Table, Column, Model, DataType } from 'sequelize-typescript';
   tableName: 'jenis_sumber_air',
   createdAt: 'dibuat_pada',
   updatedAt: 'diperbarui_pada',
-  underscored: true,  // Enable snake_case names
+  underscored: true,
 })
 class JenisSumberAir extends Model<JenisSumberAir> {
   @Column({
