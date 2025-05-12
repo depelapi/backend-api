@@ -2,14 +2,15 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config'
 import { Request, Response, NextFunction } from 'express';
 
-export default function auth(req: Request, res: Response, next: NextFunction) {
+export default function auth(req: Request, res: Response, next: NextFunction): void {
     const token = req.headers['authorization'];
 
     if (!token) {
-        return res.status(401).json({ 
+        res.status(401).json({ 
             status: 'fail',
             message: 'Unauthorized. Please login.'
         });
+        return;
     }
 
     try {
@@ -17,9 +18,10 @@ export default function auth(req: Request, res: Response, next: NextFunction) {
         req.body.id = decoded;
         next();
     } catch (error) {
-        return res.status(403).json({ 
+        res.status(403).json({ 
             status: 'fail',
             message: 'Invalid token.'
         });
+        return;
     }
 }
