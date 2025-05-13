@@ -1,6 +1,6 @@
 import express from 'express';
-import router from './src/routes/routes.js';
-import db from './src/database/config.js';
+import router from './src/routes/routes';
+import sequelize from './src/config/database';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(router);
 const startServer = async () => { 
     try {
         // Attempt to authenticate the database connection
-        await db.authenticate(); 
+        await sequelize.authenticate(); 
         console.log('Connection has been established successfully.');
     } catch (error) {
         // Log an error message if the database connection fails
