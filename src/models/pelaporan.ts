@@ -1,81 +1,88 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../config/database';
 import User from './user';
 import TitikKamera from './titik-kamera';
 import StatusKebakaran from './status-kebakaran';
 
-@Table({
-  tableName: 'pelaporan',
-  createdAt: 'dibuat_pada',
-  updatedAt: 'diperbarui_pada',
-  underscored: true,
-})
-class Pelaporan extends Model<Pelaporan> {
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id!: number;
+class Pelaporan extends Model {
+  public id!: number;
+  public judul!: string;
+  public deskripsi!: string;
+  public latitud!: number;
+  public longitud!: number;
+  public akun_socmed!: boolean;
+  public id_user!: number;
+  public id_titik_kamera!: number;
+  public id_status_kebakaran!: number;
+  public dibuat_pada!: Date;
+  public diperbarui_pada!: Date;
 
-  @Column({
-    type: DataType.CHAR(50),
-    allowNull: false,
-  })
-  judul!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  deskripsi!: string;
-
-  @Column({
-    type: DataType.DECIMAL(10, 8),
-    allowNull: false,
-  })
-  latitud!: number;
-
-  @Column({
-    type: DataType.DECIMAL(11, 8),
-    allowNull: false,
-  })
-  longitud!: number;
-
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-  })
-  akun_socmed!: boolean;
-
-  @ForeignKey(() => User)
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  id_user!: number;
-
-  @ForeignKey(() => TitikKamera)
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  id_titik_kamera!: number;
-
-  @ForeignKey(() => StatusKebakaran)
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  id_status_kebakaran!: number;
-
-  @BelongsTo(() => User)
-  user!: User;
-
-  @BelongsTo(() => TitikKamera)
-  titik_kamera!: TitikKamera;
-
-  @BelongsTo(() => StatusKebakaran)
-  status_kebakaran!: StatusKebakaran;
+  public static associate(models: any): void {
+    Pelaporan.belongsTo(models.User, { foreignKey: 'id_user' });
+    Pelaporan.belongsTo(models.TitikKamera, { foreignKey: 'id_titik_kamera' });
+    Pelaporan.belongsTo(models.StatusKebakaran, { foreignKey: 'id_status_kebakaran' });
+  };
 }
+
+Pelaporan.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    judul: {
+      type: DataTypes.CHAR(50),
+      allowNull: false,
+    },
+    deskripsi: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    latitud: {
+      type: DataTypes.DECIMAL(10, 8),
+      allowNull: false,
+    },
+    longitud: {
+      type: DataTypes.DECIMAL(11, 8),
+      allowNull: false,
+    },
+    akun_socmed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    id_user: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
+    id_titik_kamera: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: 'titik_kamera',
+        key: 'id',
+      },
+    },
+    id_status_kebakaran: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: 'status_kebakaran',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    tableName: 'pelaporan',
+    createdAt: 'dibuat_pada',
+    updatedAt: 'diperbarui_pada',
+    underscored: true,
+  }
+);
 
 export default Pelaporan;

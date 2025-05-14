@@ -1,17 +1,32 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../config/database';
 
-@Table({
-  tableName: 'jenis_user',
-  createdAt: 'dibuat_pada',
-  updatedAt: 'diperbarui_pada',
-  underscored: true,
-})
-class JenisUser extends Model<JenisUser> {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  nama!: string;
+class JenisUser extends Model {
+  public id!: number;
+  public nama!: string;
+  public dibuat_pada!: Date;
+  public diperbarui_pada!: Date;
 }
+
+JenisUser.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'jenis_user',
+    createdAt: 'dibuat_pada',
+    updatedAt: 'diperbarui_pada',
+    underscored: true,
+  }
+);
 
 export default JenisUser;

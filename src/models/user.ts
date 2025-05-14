@@ -1,78 +1,45 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import JenisUser from './jenis-user';
-import ReguDamkar from './regu-damkar';
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../config/database';
 
-@Table({
-  tableName: 'user',
-  createdAt: 'dibuat_pada',
-  updatedAt: 'diperbarui_pada',
-  underscored: true,
-})
-class User extends Model<User> {
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id!: number;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  email!: string | null;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  password!: string | null;
-
-  @Column({
-    type: DataType.CHAR(50),
-    allowNull: true,
-  })
-  nama!: string | null;
-
-  @Column({
-    type: DataType.CHAR(15),
-    allowNull: true,
-  })
-  no_telpon!: string | null;
-
-  @Column({
-    type: DataType.CHAR(18),
-    allowNull: true,
-    unique: true,
-  })
-  nip!: string | null;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-    unique: true,
-  })
-  id_google!: string | null;
-
-  @ForeignKey(() => JenisUser)
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  id_jenis_user!: number;
-
-  @ForeignKey(() => ReguDamkar)
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    allowNull: true,
-  })
-  id_regu_damkar!: number | null;
-
-  @BelongsTo(() => JenisUser)
-  jenis_user!: JenisUser;
-
-  @BelongsTo(() => ReguDamkar)
-  regu_damkar!: ReguDamkar;
+class User extends Model {
+  public id!: number;
+  public username!: string;
+  public email!: string;
+  public password!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'users',
+    timestamps: true,
+  }
+);
 
 export default User;

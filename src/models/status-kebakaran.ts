@@ -1,17 +1,32 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../config/database';
 
-@Table({
-  tableName: 'status_kebakaran',
-  createdAt: 'dibuat_pada',
-  updatedAt: 'diperbarui_pada',
-  underscored: true,  // Enable snake_case names
-})
-class StatusKebakaran extends Model<StatusKebakaran> {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  nama!: string;
+class StatusKebakaran extends Model {
+  public id!: number;
+  public nama!: string;
+  public dibuat_pada!: Date;
+  public diperbarui_pada!: Date;
 }
+
+StatusKebakaran.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'status_kebakaran',
+    createdAt: 'dibuat_pada',
+    updatedAt: 'diperbarui_pada',
+    underscored: true,
+  }
+);
 
 export default StatusKebakaran;

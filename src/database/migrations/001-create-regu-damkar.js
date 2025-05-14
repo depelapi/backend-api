@@ -1,0 +1,42 @@
+'use strict';
+
+const tableName = 'regu_damkar';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.createTable(tableName, {
+      id: {
+        type: Sequelize.INTEGER({ unsigned: true }),
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      nama: {
+        type: Sequelize.CHAR(50),
+        allowNull: false,
+        unique: true,
+      },
+      dibuat_pada: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
+      diperbarui_pada: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
+      id_jenis_regu_damkar: {
+        type: Sequelize.INTEGER({ unsigned: true }),
+        allowNull: false,
+        references: {
+          model: 'jenis_regu_damkar',
+          key: 'id',
+        },
+      },
+    });
+  },
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable(tableName);
+  }
+};
