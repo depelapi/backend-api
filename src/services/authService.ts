@@ -18,12 +18,12 @@ export class AuthService {
             throw new Error('User not found');
         }
         
-        const isPasswordValid = await comparePassword(credentials.password, user.password);
+        const isPasswordValid = await comparePassword(credentials.password, user.password!); // ! change later after google login feature is available 
         if (!isPasswordValid) {
             throw new Error('Invalid password');
         }
         
-        const token = generateToken(user.id.toString());
+        const token = generateToken(user.id.toString(), user.id_jenis_user.toString());
         return token;
     }
 }

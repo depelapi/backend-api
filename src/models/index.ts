@@ -4,21 +4,21 @@ import { ModelWithAssociations } from '../types/model.types';
 
 // Import all models
 import User from './user';
-import JenisUser from './jenis-user';
-import JenisReguDamkar from './jenis-regu-damkar';
-import JenisSumberAir from './jenis-sumber-air';
-import JenisPenyalahgunaanUser from './jenis-penyalahgunaan-user';
-import JenisPenyalahgunaanPelaporan from './jenis-penyalahgunaan-pelaporan';
-import ReguDamkar from './regu-damkar';
-import StatusKebakaran from './status-kebakaran';
-import TitikKamera from './titik-kamera';
-import MenanganiLahan from './menangani-lahan';
+import JenisUser from './jenisUser';
+import JenisReguDamkar from './jenisReguDamkar';
+import JenisSumberAir from './jenisSumberAir';
+import JenisPenyalahgunaanUser from './jenisPenyalahgunaanUser';
+import JenisPenyalahgunaanPelaporan from './jenisPenyalahgunaanPelaporan';
+import ReguDamkar from './reguDamkar';
+import StatusKebakaran from './statusKebakaran';
+import TitikKamera from './titikKamera';
+import MenanganiLahan from './menanganiLahan';
 import Pelaporan from './pelaporan';
-import GambarPelaporan from './gambar-pelaporan';
+import GambarPelaporan from './gambarPelaporan';
 import Penanganan from './penanganan';
-import DetailPenanganan from './detail-penanganan';
-import PenyalahgunaanPelaporan from './penyalahgunaan-pelaporan';
-import PenyalahgunaanUser from './penyalahgunaan-user';
+import DetailPenanganan from './detailPenanganan';
+import PenyalahgunaanPelaporan from './penyalahgunaanPelaporan';
+import PenyalahgunaanUser from './penyalahgunaanUser';
 
 // Define a type for the models collection
 interface Models {

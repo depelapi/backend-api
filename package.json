@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts",
+    "dev": "nodemon --exec ts-node src/server.ts",
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
@@ -28,6 +28,7 @@
     "eslint": "^7.22.0",
     "eslint-config-airbnb-typescript": "^14.0.1",
     "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
     "sequelize-cli": "^6.6.3",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.0.0",

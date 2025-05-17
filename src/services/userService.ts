@@ -13,7 +13,9 @@ export class UserService {
     
     public async getUserById (userId: number) {
         const user = await User.findByPk(userId);
-        return user;
+        if (!user) return null;
+        const { password, ...userWithoutPassword } = user.get({ plain: true });
+        return userWithoutPassword;
     };
     
     public async getAllUsers () {

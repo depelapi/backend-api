@@ -1,16 +1,21 @@
 'use strict';
+const bcrypt = require('bcrypt');
 
 /** @type {import('sequelize-cli').Migration} */
 
 const tableName = 'user';
+const SALT_ROUNDS = 10;
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-     await queryInterface.bulkInsert(tableName, [
+    // Hash all passwords
+    const hashedPassword = await bcrypt.hash('password', SALT_ROUNDS);
+    
+    await queryInterface.bulkInsert(tableName, [
       {
         nama: 'Muhammad Azhim Nugroho',
         email: 'azhim@email.com',
-        password: 'password',
+        password: hashedPassword,
         no_telpon: null,
         nip: null,
         id_google: null,
@@ -22,7 +27,7 @@ module.exports = {
       {
         nama: 'Nida\'an Khafiyya',
         email: 'nida@email.com',
-        password: 'password',
+        password: hashedPassword,
         no_telpon: null,
         nip: null,
         id_google: null,
@@ -34,7 +39,7 @@ module.exports = {
       {
         nama: 'Jasmine Kinasih',
         email: 'jasmine@email.com',
-        password: 'password',
+        password: hashedPassword,
         no_telpon: null,
         nip: null,
         id_google: null,
@@ -46,7 +51,7 @@ module.exports = {
       {
         nama: 'Reza Fauzan',
         email: 'reza@email.com',
-        password: 'password',
+        password: hashedPassword,
         no_telpon: null,
         nip: null,
         id_google: null,
@@ -58,7 +63,7 @@ module.exports = {
       {
         nama: 'Rahimi Fitri',
         email: 'fitri@email.com',
-        password: 'password',
+        password: hashedPassword,
         no_telpon: null,
         nip: null,
         id_google: null,

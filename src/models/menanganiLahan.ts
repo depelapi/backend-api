@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
-import ReguDamkar from './regu-damkar';
-import TitikKamera from './titik-kamera';
+import ReguDamkar from './reguDamkar';
+import TitikKamera from './titikKamera';
 
 class MenanganiLahan extends Model {
   public id!: number;

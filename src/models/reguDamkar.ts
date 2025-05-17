@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
-import JenisReguDamkar from './jenis-regu-damkar';
+import JenisReguDamkar from './jenisReguDamkar';
 
 class ReguDamkar extends Model {
   public id!: number;
@@ -8,10 +8,6 @@ class ReguDamkar extends Model {
   public id_jenis_regu_damkar!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
-  public static associate(models: any) {
-    ReguDamkar.belongsTo(models.JenisReguDamkar, { foreignKey: 'id_jenis_regu_damkar' });
-  };
 }
 
 ReguDamkar.init(
@@ -43,5 +39,11 @@ ReguDamkar.init(
     underscored: true,
   }
 );
+
+// Set up the association directly after model initialization
+ReguDamkar.belongsTo(JenisReguDamkar, { 
+  foreignKey: 'id_jenis_regu_damkar',
+  as: 'JenisReguDamkar'  // This is crucial - defines the alias used in queries
+});
 
 export default ReguDamkar;

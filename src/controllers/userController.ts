@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/userService';
-import { handleError } from '../utils/errorHandler';
+import { sendErrorResponse } from '../utils/errorHandler';
 
 export class UserController {
     private userService: UserService;
@@ -9,7 +9,7 @@ export class UserController {
         this.userService = new UserService();
     }
 
-    public async getUserDetails(req: Request, res: Response): Promise<void> {
+    public getUserDetails = async (req: Request, res: Response): Promise<void> => {
         try {
             const userId = parseInt(req.params.id);
             const user = await this.userService.getUserById(userId);
@@ -19,7 +19,7 @@ export class UserController {
             }
             res.status(200).json(user);
         } catch (error) {
-            handleError(res, error);
+            sendErrorResponse(res, error);
         }
     }
 
@@ -33,7 +33,7 @@ export class UserController {
     //         }
     //         res.status(200).json(updatedUser);
     //     } catch (error) {
-    //         handleError(res, error);
+    //         sendErrorResponse(res, error);
     //     }
     // }
 
@@ -47,7 +47,7 @@ export class UserController {
     //         }
     //         res.status(204).send();
     //     } catch (error) {
-    //         handleError(res, error);
+    //         sendErrorResponse(res, error);
     //     }
     // }
 }

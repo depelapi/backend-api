@@ -1,19 +1,8 @@
-import express from 'express';
-import { json } from 'body-parser';
+import app from './app';
 import config from './config/config';
-import routes from './routes/index';
-import { errorMiddleware } from './middleware/errorMiddleware';
 
-const app = express();
+const PORT = process.env.PORT || config.port || 8080;
 
-app.use(json());
-app.use(routes);
-app.use(errorMiddleware);
-
-const PORT = config.port || 3000;
-
-export const startServer = () => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
-    });
-};
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

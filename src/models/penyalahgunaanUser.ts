@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import User from './user';
-import JenisPenyalahgunaanUser from './jenis-penyalahgunaan-user';
+import JenisPenyalahgunaanUser from './jenisPenyalahgunaanUser';
 
 class PenyalahgunaanUser extends Model {
   public id!: number;

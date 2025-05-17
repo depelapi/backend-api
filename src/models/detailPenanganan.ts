@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import Penanganan from './penanganan';
-import JenisSumberAir from './jenis-sumber-air';
+import JenisSumberAir from './jenisSumberAir';
 
 class DetailPenanganan extends Model {
   public id!: number;

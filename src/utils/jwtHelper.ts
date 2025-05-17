@@ -2,13 +2,19 @@ import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: any;
+  }
+}
+
 dotenv.config();
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION = process.env.JWT_EXPIRATION || '7d';
 
-export const generateToken = (userId: string): string => {
-    const payload = { id: userId };
+export const generateToken = (userId: string, userIdJenisUser: string): string => {
+    const payload = { id: userId, id_jenis_user: userIdJenisUser };
     const secretKey = JWT_SECRET as Secret;
     const options: SignOptions = { expiresIn: JWT_EXPIRATION as jwt.SignOptions["expiresIn"] };
     

@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
-import ReguDamkar from './regu-damkar';
+import ReguDamkar from './reguDamkar';
 import Pelaporan from './pelaporan';
 
 class Penanganan extends Model {

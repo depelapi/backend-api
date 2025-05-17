@@ -11,11 +11,7 @@ const app = express();
 // app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
-
-// Routes
 app.use('/api', routes);
-
-// Error handling middleware
 app.use(errorMiddleware);
 
 export default app;
