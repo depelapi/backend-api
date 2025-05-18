@@ -12,7 +12,10 @@ export class AuthController {
     public register = async (req: Request, res: Response): Promise<void> => {
         try {
             const user = await this.authService.register(req.body);
-            res.status(201).json(user);
+            res.status(201).json({
+                message: 'User registered successfully',
+                user
+            });
         } catch (error) {
             sendErrorResponse(res, error);
         }
@@ -25,7 +28,7 @@ export class AuthController {
         } catch (error) {
             sendErrorResponse(res, error, 401);
         }
-
-    // !! Implement logout method with token blacklisting later
     }
+
+    // ! Implement logout method with token blacklisting later
 }
