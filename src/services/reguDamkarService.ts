@@ -53,7 +53,7 @@ export class ReguDamkarService {
     }
   }
 
-  public async update(id: number, data: { nama?: string; id_jenis_regu_damkar?: number }) { // ! Make middleware to disallow chaning id_jenis_regu_damkar
+  public async update(id: number, data: { nama?: string; id_jenis_regu_damkar?: number }) { // TODO Make middleware to disallow chaning id_jenis_regu_damkar
     const reguDamkar = await this.getById(id);
     
     try {
