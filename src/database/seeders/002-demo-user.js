@@ -8,7 +8,6 @@ const SALT_ROUNDS = 10;
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    // Hash all passwords
     const hashedPassword = await bcrypt.hash('password', SALT_ROUNDS);
     
     await queryInterface.bulkInsert(tableName, [

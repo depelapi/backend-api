@@ -3,6 +3,7 @@ import sequelize from '../config/database';
 import User from './user';
 import TitikKamera from './titikKamera';
 import StatusKebakaran from './statusKebakaran';
+import GambarPelaporan from './gambarPelaporan';
 
 class Pelaporan extends Model {
   public id!: number;
@@ -16,12 +17,6 @@ class Pelaporan extends Model {
   public id_status_kebakaran!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
-  public static associate(models: any): void {
-    Pelaporan.belongsTo(models.User, { foreignKey: 'id_user' });
-    Pelaporan.belongsTo(models.TitikKamera, { foreignKey: 'id_titik_kamera' });
-    Pelaporan.belongsTo(models.StatusKebakaran, { foreignKey: 'id_status_kebakaran' });
-  };
 }
 
 Pelaporan.init(
@@ -48,8 +43,8 @@ Pelaporan.init(
       allowNull: false,
     },
     akun_socmed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     id_user: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -61,7 +56,7 @@ Pelaporan.init(
     },
     id_titik_kamera: {
       type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'titik_kamera',
         key: 'id',
@@ -84,5 +79,25 @@ Pelaporan.init(
     underscored: true,
   }
 );
+
+Pelaporan.belongsTo(User, {
+  foreignKey: 'id_user',
+  as: 'User'
+});
+
+Pelaporan.belongsTo(TitikKamera, {
+  foreignKey: 'id_titik_kamera',
+  as: 'TitikKamera'
+});
+
+Pelaporan.belongsTo(StatusKebakaran, {
+  foreignKey: 'id_status_kebakaran',
+  as: 'StatusKebakaran'
+});
+
+Pelaporan.hasMany(GambarPelaporan, {
+  foreignKey: 'id_pelaporan',
+  as: 'GambarPelaporan'
+});
 
 export default Pelaporan;

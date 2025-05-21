@@ -1,5 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
+import Pelaporan from './pelaporan';
+import ReguDamkar from './reguDamkar';
 
 class User extends Model {
   public id!: number;
@@ -73,5 +75,10 @@ User.init(
     updatedAt: 'diperbarui_pada',
   }
 );
+
+// User.hasMany(Pelaporan, {
+//   foreignKey: 'id_user',
+//   as: 'Pelaporan'
+// });
 
 export default User;

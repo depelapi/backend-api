@@ -28,8 +28,8 @@ module.exports = {
         allowNull: false,
       },
       akun_socmed: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       dibuat_pada: {
         type: Sequelize.DATE,
@@ -51,7 +51,7 @@ module.exports = {
       },
       id_titik_kamera: {
         type: Sequelize.INTEGER({ unsigned: true }),
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'titik_kamera',
           key: 'id',

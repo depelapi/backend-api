@@ -20,7 +20,7 @@ export const authorizeOwnerOfCamera = async (req: Request, res: Response, next: 
     
     if (!req.user || req.user.id_jenis_user !== '3') {
       return res.status(403).json({
-        message: 'Access denied. Only land owners (Pemilik Lahan) can perform this operation.'
+        message: 'Access denied. Only land Pemilik Lahan can perform this operation.'
       });
     }
     

@@ -4,7 +4,13 @@ import User from '../models/user';
 declare global {
   namespace Express {
     interface Request {
-      user?: any; 
+      user?: {
+        id: string;
+        id_jenis_user: string;
+      };
+      reguDamkarId?: number;
     }
   }
 }
+
+export {};
