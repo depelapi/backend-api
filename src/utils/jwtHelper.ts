@@ -2,9 +2,14 @@ import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 
-declare module 'express-serve-static-core' {
+declare module 'express' {
   interface Request {
-    user?: any;
+    user?: {
+        id: string;
+        id_jenis_user: string;
+        id_regu_damkar?: string;
+    };
+    // reguDamkarId?: number;
   }
 }
 

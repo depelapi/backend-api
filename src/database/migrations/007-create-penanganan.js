@@ -11,7 +11,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      lokasi_gmaps: {
+      lokasi_gmaps: { // May need to be changed to lat and long
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -34,6 +34,14 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'regu_damkar',
+          key: 'id',
+        },
+      },
+      id_user: { // New, tracks the one that created the penanganan
+        type: Sequelize.INTEGER({ unsigned: true }),
+        allowNull: false,
+        references: {
+          model: 'user',
           key: 'id',
         },
       },

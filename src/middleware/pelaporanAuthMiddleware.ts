@@ -27,7 +27,7 @@ export const authorizeStatusUpdate = async (req: Request, res: Response, next: N
     }
 
     // Store regu_damkar info in request for later use
-    req.reguDamkarId = user.id_regu_damkar;
+    req.user!.id_regu_damkar = user.id_regu_damkar.toString();
     next();
   } catch (error) {
     next(error);

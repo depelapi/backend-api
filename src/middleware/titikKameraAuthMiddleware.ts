@@ -16,7 +16,7 @@ export const authorizeOwnerOnly = (req: Request, res: Response, next: NextFuncti
 export const authorizeOwnerOfCamera = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const cameraId = parseInt(req.params.id);
-    const userId = req.user?.id;
+    const userId = req.user!.id;
     
     if (!req.user || req.user.id_jenis_user !== '3') {
       return res.status(403).json({

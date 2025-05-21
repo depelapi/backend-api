@@ -2,20 +2,17 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import ReguDamkar from './reguDamkar';
 import Pelaporan from './pelaporan';
+import User from './user';
 
 class Penanganan extends Model {
   public id!: number;
   public lokasi_gmaps!: string;
   public tiba_pada!: Date | null;
   public id_regu_damkar!: number;
+  public id_user!: number
   public id_pelaporan!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-  
-  public static associate(models: any) {
-    Penanganan.belongsTo(models.ReguDamkar, { foreignKey: 'id_regu_damkar' });
-    Penanganan.belongsTo(models.Pelaporan, { foreignKey: 'id_pelaporan' });
-  };
 }
 
 Penanganan.init(
@@ -41,6 +38,14 @@ Penanganan.init(
         key: 'id',
       },
     },
+    id_user: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
     id_pelaporan: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -58,5 +63,20 @@ Penanganan.init(
     underscored: true,
   }
 );
+
+Penanganan.belongsTo(ReguDamkar, {
+  foreignKey: 'id_regu_damkar',
+  as: 'ReguDamkar'
+});
+
+Penanganan.belongsTo(Pelaporan, {
+  foreignKey: 'id_pelaporan',
+  as: 'Pelaporan'
+});
+
+Penanganan.belongsTo(User, {
+  foreignKey: 'id_user',
+  as: 'User'
+});
 
 export default Penanganan;

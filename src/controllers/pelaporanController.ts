@@ -116,10 +116,15 @@ export class PelaporanController {
     try {
       const pelaporanId = parseInt(req.params.id);
       const statusId = parseInt(req.body.id_status_kebakaran);
-      const reguDamkarId = req.reguDamkarId!;
+      const reguDamkarId = parseInt(req.user?.id_regu_damkar || '');
       
       if (!statusId) {
         res.status(400).json({ message: 'id_status_kebakaran is required' });
+        return;
+      }
+      
+      if (!reguDamkarId) {
+        res.status(403).json({ message: 'User is not part of any regu damkar' });
         return;
       }
       
