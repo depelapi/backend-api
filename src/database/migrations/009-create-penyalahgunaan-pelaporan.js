@@ -40,7 +40,15 @@ module.exports = {
           model: 'jenis_penyalahgunaan_pelaporan',
           key: 'id',
         },
-      }
+      },
+      id_user: {
+        type: Sequelize.INTEGER({ unsigned: true }),
+        allowNull: false,
+        references: {
+          model: 'user',
+          key: 'id',
+        },
+      },
     });
   },
   async down (queryInterface, Sequelize) {

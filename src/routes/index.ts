@@ -6,6 +6,7 @@ import titikKameraRoutes from './titikKameraRoutes';
 import pelaporanRoutes from './pelaporanRoutes';
 import penangananRoutes from './penangananRoutes';
 import detailPenangananRoutes from './detailPenangananRoutes';
+import penyalahgunaanPelaporanRoutes from './penyalahgunaanPelaporanRoutes';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/titik-kamera', titikKameraRoutes);
 router.use('/pelaporan', pelaporanRoutes);
 router.use('/penanganan', penangananRoutes);
 router.use('/detail-penanganan', detailPenangananRoutes);
+router.use('/penyalahgunaan-pelaporan', penyalahgunaanPelaporanRoutes);
 
 export default router;

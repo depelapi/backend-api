@@ -8,6 +8,11 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert(tableName, [
       {
+        nama: 'Sudah Dilaporkan atau Duplikat',
+        dibuat_pada: new Date(),
+        diperbarui_pada: new Date()
+      },
+      {
         nama: 'Hoax atau Berita Palsu',
         dibuat_pada: new Date(),
         diperbarui_pada: new Date()
