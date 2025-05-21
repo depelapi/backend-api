@@ -15,7 +15,6 @@ router.post('/', upload.array('images', 5), pelaporanController.createPelaporan)
 
 router.post('/:id/images', upload.single('image'), pelaporanController.addImageToPelaporan);
 
-// Add new route for status update
 router.patch(
   '/:id/status',
   authenticateToken,

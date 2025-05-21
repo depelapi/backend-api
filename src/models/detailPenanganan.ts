@@ -17,10 +17,6 @@ class DetailPenanganan extends Model {
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
 
-  public static aassociate (models: any): void {
-    DetailPenanganan.belongsTo(models.Penanganan, { foreignKey: 'id_penanganan' });
-    DetailPenanganan.belongsTo(models.JenisSumberAir, { foreignKey: 'id_jenis_sumber_air' });
-  };
 }
 
 DetailPenanganan.init(
@@ -83,5 +79,15 @@ DetailPenanganan.init(
     underscored: true,
   }
 );
+
+DetailPenanganan.belongsTo(Penanganan, {
+  foreignKey: 'id_penanganan',  
+  as: 'Penanganan'
+});
+
+DetailPenanganan.belongsTo(JenisSumberAir, {
+  foreignKey: 'id_jenis_sumber_air',
+  as: 'JenisSumberAir'
+});
 
 export default DetailPenanganan;

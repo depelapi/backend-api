@@ -5,6 +5,7 @@ import reguDamkarRoutes from './reguDamkarRoutes';
 import titikKameraRoutes from './titikKameraRoutes';
 import pelaporanRoutes from './pelaporanRoutes';
 import penangananRoutes from './penangananRoutes';
+import detailPenangananRoutes from './detailPenangananRoutes';
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/regu-damkar', reguDamkarRoutes);
 router.use('/titik-kamera', titikKameraRoutes);
 router.use('/pelaporan', pelaporanRoutes);
 router.use('/penanganan', penangananRoutes);
+router.use('/detail-penanganan', detailPenangananRoutes);
 
 export default router;
