@@ -10,11 +10,6 @@ class GambarPelaporan extends Model {
   public id_pelaporan!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
-  public static associate(models: any) {
-    GambarPelaporan.belongsTo(models.User, { foreignKey: 'id_user' });
-    GambarPelaporan.belongsTo(models.Pelaporan, { foreignKey: 'id_pelaporan' });
-  };
 }
 
 GambarPelaporan.init(
@@ -54,5 +49,15 @@ GambarPelaporan.init(
     underscored: true,
   }
 );
+
+GambarPelaporan.belongsTo(User, {
+  foreignKey: 'id_user',
+  as: 'User',
+});
+
+GambarPelaporan.belongsTo(Pelaporan, {
+  foreignKey: 'id_pelaporan',
+  as: 'Pelaporan',
+});
 
 export default GambarPelaporan;

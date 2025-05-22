@@ -76,9 +76,14 @@ User.init(
   }
 );
 
-// User.hasMany(Pelaporan, {
-//   foreignKey: 'id_user',
-//   as: 'Pelaporan'
-// });
+User.hasMany(Pelaporan, {
+  foreignKey: 'id_user',
+  as: 'Pelaporan'
+});
+
+User.belongsTo(ReguDamkar, {
+  foreignKey: 'id_regu_damkar',
+  as: 'ReguDamkar'
+});
 
 export default User;

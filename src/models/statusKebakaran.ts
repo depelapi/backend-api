@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
+import DetailPenanganan from './detailPenanganan';
 
 class StatusKebakaran extends Model {
   public id!: number;
@@ -28,5 +29,10 @@ StatusKebakaran.init(
     underscored: true,
   }
 );
+
+StatusKebakaran.hasMany(DetailPenanganan, {
+  foreignKey: 'id_status_kebakaran',
+  as: 'DetailPenanganan',
+});
 
 export default StatusKebakaran;

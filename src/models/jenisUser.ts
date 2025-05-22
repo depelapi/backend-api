@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
+import User from './user';
 
 class JenisUser extends Model {
   public id!: number;
@@ -28,5 +29,10 @@ JenisUser.init(
     underscored: true,
   }
 );
+
+JenisUser.hasMany(User, {
+  foreignKey: 'id_jenis_user',
+  as: 'User',
+});
 
 export default JenisUser;

@@ -2,7 +2,6 @@ import { Sequelize } from 'sequelize';
 import sequelize from '../config/database';
 import { ModelWithAssociations } from '../types/model.types';
 
-// Import all models
 import User from './user';
 import JenisUser from './jenisUser';
 import JenisReguDamkar from './jenisReguDamkar';
@@ -20,7 +19,6 @@ import DetailPenanganan from './detailPenanganan';
 import PenyalahgunaanPelaporan from './penyalahgunaanPelaporan';
 import PenyalahgunaanUser from './penyalahgunaanUser';
 
-// Define a type for the models collection
 interface Models {
   User: ModelWithAssociations;
   JenisUser: ModelWithAssociations;
@@ -41,7 +39,6 @@ interface Models {
   [key: string]: ModelWithAssociations;
 }
 
-// Initialize models object
 const models: Models = {
   User,
   JenisUser,
@@ -61,9 +58,6 @@ const models: Models = {
   PenyalahgunaanUser,
 };
 
-User.belongsTo(JenisUser, { foreignKey: 'id_jenis_user' });
-
-// Set up associations between models if they exist
 Object.keys(models).forEach((modelName) => {
   if (models[modelName].associate) {
     models[modelName].associate(models);

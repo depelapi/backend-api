@@ -2,6 +2,8 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import User from './user';
 import JenisPenyalahgunaanUser from './jenisPenyalahgunaanUser';
+import ReguDamkar from './reguDamkar';
+import TitiKamera from './titikKamera';
 
 class PenyalahgunaanUser extends Model {
   public id!: number;
@@ -11,13 +13,6 @@ class PenyalahgunaanUser extends Model {
   public id_jenis_penyalahgunaan_user!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
-  public static associate(models: any): void {
-    PenyalahgunaanUser.belongsTo(models.ReguDamkar, { foreignKey: 'id_regu_damkar' });
-    PenyalahgunaanUser.belongsTo(models.TitikKamera, { foreignKey: 'id_titik_kamera' });
-    PenyalahgunaanUser.belongsTo(models.User, { foreignKey: 'id_user' });
-    PenyalahgunaanUser.belongsTo(models.JenisPenyalahgunaanUser, { foreignKey: 'id_jenis_penyalahgunaan_user' });
-  }
 }
 
 PenyalahgunaanUser.init(
@@ -61,5 +56,25 @@ PenyalahgunaanUser.init(
     underscored: true,
   }
 );
+
+PenyalahgunaanUser.belongsTo(ReguDamkar, {
+  foreignKey: 'id_regu_damkar',
+  as: 'ReguDamkar',
+});
+
+PenyalahgunaanUser.belongsTo(TitiKamera, {
+  foreignKey: 'id_titik_kamera',
+  as: 'TitikKamera',
+});
+
+PenyalahgunaanUser.belongsTo(User, {
+  foreignKey: 'id_user',
+  as: 'User',
+});
+
+PenyalahgunaanUser.belongsTo(JenisPenyalahgunaanUser, {
+  foreignKey: 'id_jenis_penyalahgunaan_user',
+  as: 'JenisPenyalahgunaanUser',
+});
 
 export default PenyalahgunaanUser;

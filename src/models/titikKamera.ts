@@ -12,10 +12,6 @@ class TitikKamera extends Model {
   public id_user!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
-  public static associate(models: any) {
-    TitikKamera.belongsTo(models.User, { foreignKey: 'id_user' });
-  };
 }
 
 TitikKamera.init(
@@ -65,5 +61,10 @@ TitikKamera.init(
     underscored: true,
   }
 );
+
+TitikKamera.belongsTo(User, {
+  foreignKey: 'id_user',
+  as: 'User',
+});
 
 export default TitikKamera;

@@ -9,11 +9,6 @@ class MenanganiLahan extends Model {
   public id_titik_kamera!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
-  public static associate(models: any): void {
-    MenanganiLahan.belongsTo(models.ReguDamkar, { foreignKey: 'id_regu_damkar' });
-    MenanganiLahan.belongsTo(models.TitikKamera, { foreignKey: 'id_titik_kamera' });
-  }
 }
 
 MenanganiLahan.init(
@@ -48,5 +43,15 @@ MenanganiLahan.init(
     underscored: true,
   }
 );
+
+MenanganiLahan.belongsTo(ReguDamkar, {
+  foreignKey: 'id_regu_damkar',
+  as: 'ReguDamkar',
+});
+
+MenanganiLahan.belongsTo(TitikKamera, {
+  foreignKey: 'id_titik_kamera',
+  as: 'TitikKamera',
+});
 
 export default MenanganiLahan;

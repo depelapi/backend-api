@@ -2,6 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import Penanganan from './penanganan';
 import JenisSumberAir from './jenisSumberAir';
+import ReguDamkar from './reguDamkar';
 
 class DetailPenanganan extends Model {
   public id!: number;
@@ -16,7 +17,6 @@ class DetailPenanganan extends Model {
   public id_jenis_sumber_air!: number;
   public dibuat_pada!: Date;
   public diperbarui_pada!: Date;
-
 }
 
 DetailPenanganan.init(

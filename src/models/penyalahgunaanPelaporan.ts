@@ -59,8 +59,19 @@ PenyalahgunaanPelaporan.init(
   }
 );
 
-PenyalahgunaanPelaporan.belongsTo(Pelaporan, { foreignKey: 'id_pelaporan', as: 'pelaporan' });
-PenyalahgunaanPelaporan.belongsTo(JenisPenyalahgunaanPelaporan, { foreignKey: 'id_jenis_penyalahgunaan_pelaporan', as: 'jenis_penyalahgunaan_pelaporan' });
-PenyalahgunaanPelaporan.belongsTo(User, { foreignKey: 'id_user', as: 'user' });
+PenyalahgunaanPelaporan.belongsTo(Pelaporan, { 
+  foreignKey: 'id_pelaporan',
+  as: 'Pelaporan'
+});
+
+PenyalahgunaanPelaporan.belongsTo(JenisPenyalahgunaanPelaporan, { 
+  foreignKey: 'id_jenis_penyalahgunaan_pelaporan',
+  as: 'JenisPenyalahgunaanPelaporan'
+});
+
+PenyalahgunaanPelaporan.belongsTo(User, { 
+  foreignKey: 'id_user',
+  as: 'User'
+});
 
 export default PenyalahgunaanPelaporan;

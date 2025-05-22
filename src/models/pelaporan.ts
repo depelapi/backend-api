@@ -4,6 +4,8 @@ import User from './user';
 import TitikKamera from './titikKamera';
 import StatusKebakaran from './statusKebakaran';
 import GambarPelaporan from './gambarPelaporan';
+import DetailPenanganan from './detailPenanganan';
+import Penanganan from './penanganan';
 
 class Pelaporan extends Model {
   public id!: number;
@@ -98,6 +100,28 @@ Pelaporan.belongsTo(StatusKebakaran, {
 Pelaporan.hasMany(GambarPelaporan, {
   foreignKey: 'id_pelaporan',
   as: 'GambarPelaporan'
+});
+
+Pelaporan.belongsToMany(User, {
+  through: 'penyalahgunaan_pelaporan',
+  foreignKey: 'id_pelaporan',
+  otherKey: 'id_user',
+  as: 'PenyalahgunaanPelaporan'
+});
+
+Pelaporan.hasMany(Penanganan, {
+  foreignKey: 'id_pelaporan',
+  as: 'Penanganan'
+});
+
+Pelaporan.belongsToMany(DetailPenanganan, {
+  through: {
+    model: Penanganan,
+    unique: false
+  },
+  foreignKey: 'id_pelaporan',
+  otherKey: 'id',
+  as: 'DetailPenanganan'
 });
 
 export default Pelaporan;
